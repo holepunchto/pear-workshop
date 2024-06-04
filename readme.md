@@ -52,4 +52,4 @@ Open Keet and click the Profile Picture in the top right to open Profile & Setti
 
 # Pear Runtime Documentation
 
-Pear Runtime Documentation can be found at https://docs.pears.com or <a href="pear://runtime/documentation">pear://runtime/documentation</a>.
+Pear Runtime Documentation can be found at https://docs.pears.com or pear://runtime/documentation.
