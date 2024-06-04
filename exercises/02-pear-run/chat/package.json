@@ -1,0 +1,22 @@
+{
+  "name": "chat",
+  "main": "index.html",
+  "type": "module",
+  "pear": {
+    "name": "chat",
+    "type": "desktop",
+    "gui": {
+      "backgroundColor": "#1F2430",
+      "height": 540,
+      "width": 720
+    }
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "brittle": "^3.0.0"
+  },
+  "scripts": {
+    "dev": "pear dev",
+    "test": "brittle test/*.test.js"
+  }
+}
