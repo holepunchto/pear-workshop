@@ -1,6 +1,6 @@
 # pear-workshop
 
-Welcome to the Pear Runtime Workshop. 
+Welcome to the [Pear Runtime](https://github.com/holepunchto/pear) Workshop. 
 
 ## Requirements
 
@@ -47,3 +47,7 @@ Open Keet and click the Profile Picture in the top right to open Profile & Setti
 * Peer-to-Peer Identity & Authoring
 * Pear Worker API & Pear Desktop/Terminal/Mobile Applications
 * Wrapup
+
+# Pear Runtime Documentation
+
+Pear Runtime Documentation can be found at https://docs.pears.com or pear://runtime/documentation.
