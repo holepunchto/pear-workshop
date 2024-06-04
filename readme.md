@@ -10,7 +10,7 @@ Welcome to the [Pear Runtime](https://github.com/holepunchto/pear) Workshop.
 
 ## Setup
 
-It's either a one line command or a button click in [Keet][https://keet.io] Profile & Settings.
+It's either a one line command or a button click in [Keet][https://keet.io) Profile & Settings.
 
 There are two ways to bootstrap Pear.
 
@@ -28,7 +28,7 @@ Once installed run `pear run pear://runtime`. This will open a new window that s
 
 ### OPTION 2: Bootstrap Pear with Keet
 
-The second way to bootstrap Pear is to install Keet from [https://keet.io]. Keet is a Pear Application for video chat, broadcast feeds and more, all peer-to-peer on both Desktop and Mobile. 
+The second way to bootstrap Pear is to install Keet from https://keet.io. Keet is a Pear Application for video chat, broadcast feeds and more, all peer-to-peer on both Desktop and Mobile. 
 
 Open Keet and click the Profile Picture in the top right to open Profile & Settings. Scroll and click "Build on Pear Runtime" button.  This will open a new window that shows Complete Pear Setup. Click it. Setup complete. Open a new terminal and run `pear`. Pear help should be output.
 
