@@ -34,13 +34,13 @@ pear stage my-app
 
 Running the application (`pear run pear://<key>`) this time will show the application without the new change.
 
-The `pear run` has a checkout command that can be used to preview prerelease content:
+The `pear run` command has a checkout flag that can be used to preview prerelease content:
 
 ```sh
 pear run --checkout=staged pear://<key>
 ```
 
-When happy with the staged application, the latest length can again be marked for release by running `pear release` again:
+When happy with the staged application, the latest length can be marked for release by running `pear release` again:
 
 ```sh
 pear release my-app

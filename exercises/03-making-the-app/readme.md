@@ -2,7 +2,7 @@
 
 ## Dependencies
 
-```js
+```sh
 npm install hyperswarm hypercore-crypto b4a
 ```
 
@@ -172,7 +172,6 @@ Update `chat/index.html` to:
 </html>
 ```
 
-
 ## JavaScript
 
 Update `app.js` to:
@@ -253,3 +252,23 @@ function onMessageAdded (from, message) {
   document.querySelector('#messages').appendChild($div)
 }
 ```
+
+## Checking the app
+
+Ensure that the `chat` folder is the current working directory.
+
+Check everything is working by running the application from disk in development mode with the `--dev` flag:
+
+```sh
+pear run --dev .
+```
+
+In a new terminal (with `chat` folder as current working directory), run a second instance of the application:
+
+```sh
+pear run .
+```
+
+This should result in two instances of the same application running, each in its own application window.
+
+In one window, create a room and paste the topic into the other to join the two application instances in a chat.

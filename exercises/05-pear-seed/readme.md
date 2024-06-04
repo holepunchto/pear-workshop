@@ -4,7 +4,7 @@ To share an application with peers, seed it with `pear seed`.
 
 To seed the peer-to-peer chat application we've been building, ensure that current working directory is the chat folder and then run:
 
-```js
+```sh
 pear seed my-app
 ```
 
