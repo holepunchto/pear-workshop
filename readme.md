@@ -1,6 +1,8 @@
 # pear-workshop
 
-Welcome to the [Pear Runtime](https://github.com/holepunchto/pear) Workshop. 
+Welcome to the [Pear Runtime](https://github.com/holepunchto/pear) Workshop.
+
+![Pear Workshop](./snap.jpg)
 
 ## Requirements
 
