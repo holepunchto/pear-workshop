@@ -10,7 +10,7 @@ Welcome to the [Pear Runtime](https://github.com/holepunchto/pear) Workshop.
 
 ## Setup
 
-It's either a one line command or a button click in [Keet][https://keet.io) Profile & Settings.
+It's either a one line command or a button click in [Keet](https://keet.io) Profile & Settings.
 
 There are two ways to bootstrap Pear.
 
