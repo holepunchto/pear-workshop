@@ -2,7 +2,7 @@
 
 Welcome to the [Pear Runtime](https://github.com/holepunchto/pear) Workshop.
 
-![Pear Workshop](./snap.jpg)
+![Pear Workshop](./snap.png)
 
 ## Requirements
 
