@@ -3,8 +3,8 @@
 Create a new Pear Project. Open a terminal and run the following:
 
 ```sh
-mkdir snake
-cd snake
+mkdir chat
+cd chat
 pear init -y
 ```
 
