@@ -37,7 +37,7 @@ Once installed run `pear run pear://runtime`. This will open a new window that s
 * [Exercise 05-pear-seed](exercises/05-pear-seed/readme.md)
 * [Exercise 06-connecting-peers](exercises/06-connecting-peers/readme.md)
 * Let's Make Snake
-* Prizes
+* Wrapup
 
 # Pear Runtime Documentation
 
