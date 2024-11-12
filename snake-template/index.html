@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pear Snake</title>
+  <style>
+    pear-ctrl[data-platform="darwin"] {
+      margin-top: 14px;
+      margin-left: 10px;
+    }
+
+    #titlebar {
+      -webkit-app-region: drag;
+      height: 30px;
+      width: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      background-color: #B0D94413;
+      filter: drop-shadow(2px 10px 6px #888);
+    }
+
+    button, input {
+      all: unset;
+      border: 1px ridge #B0D944;
+      background: #000;
+      color: #B0D944;
+      padding: .45rem;
+      font-family: monospace;
+      font-size: 1rem;
+      line-height: 1rem;
+    }
+
+    body {
+      background-color: #001601;
+      font-family: monospace;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    main {
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      color: white;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    #setup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #or {
+      margin: 1.5rem auto;
+    }
+
+    #loading {
+      align-self: center;
+    }
+
+    #game, #details {
+      background: #000;
+      border: 1px solid #B0D944;
+    }
+
+    #details {
+      padding: .5em;
+      line-height: 1.5em;
+      color: #B0D944;
+    }
+
+    pear-snake { display: block; text-align: center; }
+  </style>
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <div id="titlebar">
+    <pear-ctrl></pear-ctrl>
+  </div>
+  <main>
+    <div id="setup">
+      <div>
+        <button id="create-game">Create</button>
+      </div>
+      <div id="or">- or -</div>
+      <form id="join-form">
+        <button type="submit" id="join-game">Join</button>
+        <input required id="join-game-topic" type="text" placeholder="Game Topic" />
+      </form>
+    </div>
+    <div id="loading" class="hidden">Loading ...</div>
+
+    <div id="game" class="hidden">
+      <pear-snake></pear-snake>
+      <div id="details">
+        <div>Topic: <span id="game-topic"></span></div>
+        <div>Peers: <span id="peers-count">0</span></div>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>
