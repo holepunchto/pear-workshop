@@ -54,7 +54,8 @@ function setupDb () {
   dbNs.indexes.register({
     name: 'entry-by-drive-key',
     collection: '@registry/entry',
-    key: ['driveKey']
+    key: ['driveKey'],
+    unique: true
   })
   dbNs.indexes.register({
     name: 'entry-by-type',

@@ -61,22 +61,12 @@ const collection0 = {
 
 // '@registry/entry-by-drive-key' collection key
 const index1_key = new IndexEncoder([
-  IndexEncoder.BUFFER,
-  IndexEncoder.STRING
+  IndexEncoder.BUFFER
 ], { prefix: 1 })
 
 function index1_indexify (record) {
-  const arr = []
-
-  const a0 = record.driveKey
-  if (a0 === undefined) return arr
-  arr.push(a0)
-
-  const a1 = record.name
-  if (a1 === undefined) return arr
-  arr.push(a1)
-
-  return arr
+  const a = record.driveKey
+  return a === undefined ? [] : [a]
 }
 
 // '@registry/entry-by-drive-key'
@@ -96,7 +86,7 @@ const index1 = {
   },
   encodeValue: (doc) => index1.collection.encodeKey(doc),
   encodeIndexKeys (record, context) {
-    return [index1_key.encode([record.driveKey, record.name])]
+    return [index1_key.encode([record.driveKey])]
   },
   reconstruct: (keyBuf, valueBuf) => valueBuf,
   offset: collection0.indexes.length,

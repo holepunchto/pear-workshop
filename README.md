@@ -2,14 +2,25 @@
 
 The goal of this workshop is to get used to the basic hyperdb patterns.
 
-We will do so by creating a simple registry of AI models, supporting:
+We will do so by creating a simple registry of AI models.
+
+Its entries look like
+```
+{
+  name: string, // model name, primary key
+  driveKey: fixed32, // Hyperdrive where the model is stored
+  type: string, // model type, for easier search (for example 'text-generation' or 'translation')
+  description?: string // optional
+}
+```
+The database supports:
 - Lookup by model name
 - Lookup by (Hyperdrive) key
 - Listing all models of a certain type
 
 ## Setup
 
-Fork this repository, then clone your fork.
+Fork this repository and clone your fork.
 
 Then run:
 
@@ -23,7 +34,7 @@ Run `npm t` to verify that everything works correctly.
 
 Hyperdb is documented [here](https://github.com/holepunchto/hyperdb).
 
-Hyperschema is documented [here](https://github.com/holepunchto/hyperschema). The example.js file is a good source for basic schema patterns.
+Hyperschema is documented [here](https://github.com/holepunchto/hyperschema). Its example.js file is a good source for basic schema patterns.
 
 ## Assignment
 

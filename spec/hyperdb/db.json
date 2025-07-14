@@ -24,7 +24,7 @@
       "id": 1,
       "type": 2,
       "collection": "@registry/entry",
-      "unique": false,
+      "unique": true,
       "key": [
         "driveKey"
       ]
