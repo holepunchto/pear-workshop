@@ -89,7 +89,7 @@ Our current service is not very reliable, because it has only a single writer (t
 
 A further issue is that there is no sane way to take backups in the holepunch ecosystem (unless you know very well what you are doing, you should never take a backup of a corestore or hypercore).
 
-The clean way to solve both issues is by using autobase to create a multi-writer database. Then users can simply switch to another writer if one goes down. Recovering from losing a writer (for example by losing the hard disk containing the private key of one of the peers) is done by removing that writer and adding a new one, which is possible as long as a majority of writers is still available.
+The clean way to solve both issues is by using autobase to create a multi-writer database. Then users can simply switch to another writer if one goes down. Recovering from losing a writer (for example by losing the hard disk containing the private key of one of the writer peers) is done by removing that writer and adding a new one, which is possible as long as a majority of writers is still available.
 
 If you are already (very) comfortable with autobase, you can try extending your networked service of the previous exercise to support multiple writers.
 

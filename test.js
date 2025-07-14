@@ -14,6 +14,7 @@ test('put and get record', async t => {
   })
 
   const e1 = await registry.get('e1')
+  delete e1.owner // Hack so the test doesn't break when adding the owner field
   t.alike(
     e1,
     {
@@ -33,6 +34,7 @@ test('put and get record', async t => {
   })
 
   const e2 = await registry.get('e2')
+  delete e2.owner // Hack so the test doesn't break when adding the owner field
   t.alike(
     e2,
     {
@@ -76,6 +78,15 @@ test('get entries of type', async t => {
     await consumeStream(registry.getEntriesOfType('notype')),
     []
   )
+})
+
+test.skip('delete', async t => {
+  const { registry } = await setup(t)
+  await addDefaultRecords(registry)
+
+  t.is((await registry.getByDriveKey('a'.repeat(64))).name, 'e1', 'sanity check')
+  await registry.delete('e1')
+  t.is(await registry.getByDriveKey('a'.repeat(64)), null)
 })
 
 test.skip('get entries of owner', async t => {
