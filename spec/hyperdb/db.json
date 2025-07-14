@@ -1,0 +1,44 @@
+{
+  "version": 0,
+  "offset": 0,
+  "schema": [
+    {
+      "name": "entry",
+      "namespace": "registry",
+      "id": 0,
+      "type": 1,
+      "indexes": [
+        "@registry/entry-by-drive-key",
+        "@registry/entry-by-type"
+      ],
+      "schema": "@registry/entry",
+      "derived": false,
+      "key": [
+        "name"
+      ],
+      "trigger": null
+    },
+    {
+      "name": "entry-by-drive-key",
+      "namespace": "registry",
+      "id": 1,
+      "type": 2,
+      "collection": "@registry/entry",
+      "unique": false,
+      "key": [
+        "driveKey"
+      ]
+    },
+    {
+      "name": "entry-by-type",
+      "namespace": "registry",
+      "id": 2,
+      "type": 2,
+      "collection": "@registry/entry",
+      "unique": false,
+      "key": [
+        "type"
+      ]
+    }
+  ]
+}

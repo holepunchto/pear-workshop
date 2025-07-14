@@ -1,0 +1,23 @@
+{
+  "name": "hyperdb-workshop",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Hyperdb workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard && brittle test.js"
+  },
+  "author": "Holepunch",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "corestore": "^7.4.5",
+    "hyperdb": "^4.14.1",
+    "hyperschema": "^1.12.4",
+    "ready-resource": "^1.1.2"
+  },
+  "devDependencies": {
+    "b4a": "^1.6.7",
+    "brittle": "^3.16.5",
+    "standard": "^17.1.2"
+  }
+}
