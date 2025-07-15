@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "schema": [
+    {
+      "name": "entry",
+      "namespace": "registry",
+      "compact": false,
+      "flagsPosition": 3,
+      "fields": [
+        {
+          "name": "name",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "driveKey",
+          "required": true,
+          "type": "fixed32",
+          "version": 1
+        },
+        {
+          "name": "type",
+          "required": true,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "description",
+          "required": false,
+          "type": "string",
+          "version": 1
+        },
+        {
+          "name": "owner",
+          "required": false,
+          "type": "string",
+          "version": 1
+        }
+      ]
+    }
+  ]
+}
