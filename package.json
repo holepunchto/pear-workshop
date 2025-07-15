@@ -12,8 +12,10 @@
   "dependencies": {
     "corestore": "^7.4.5",
     "graceful-goodbye": "^1.3.3",
+    "hypercore-id-encoding": "^1.3.0",
     "hyperdb": "^4.14.1",
     "hyperschema": "^1.12.4",
+    "hyperswarm": "^4.12.1",
     "ready-resource": "^1.1.2"
   },
   "devDependencies": {
