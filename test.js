@@ -45,6 +45,8 @@ test('put and get record', async t => {
     },
     'put and get of entry with description'
   )
+
+  t.alike(await registry.get('nope'), null, 'null when no entry')
 })
 
 test('get by drive key', async t => {
