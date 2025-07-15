@@ -17,6 +17,7 @@
     "hyperdb": "^4.14.1",
     "hyperschema": "^1.12.4",
     "hyperswarm": "^4.12.1",
+    "protomux-rpc": "^1.7.1",
     "ready-resource": "^1.1.2"
   },
   "devDependencies": {

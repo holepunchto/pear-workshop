@@ -87,7 +87,6 @@ async function main () {
 
     // Perform lookups to demonstrate the functionality
     await performLookups(registry)
-
   } catch (error) {
     console.error('Client error:', error.message)
     process.exit(1)
@@ -156,7 +155,6 @@ async function performLookups (registry) {
     console.log('Found items:', ownerItems)
 
     console.log('\n--- Lookups completed successfully! ---')
-
   } catch (error) {
     console.error('Error during lookups:', error.message)
   }
