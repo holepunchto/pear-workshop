@@ -34,6 +34,11 @@ function setupSchema () {
         name: 'description',
         type: 'string',
         required: false
+      },
+      {
+        name: 'owner',
+        type: 'string',
+        required: false
       }
     ]
   })
@@ -61,6 +66,11 @@ function setupDb () {
     name: 'entry-by-type',
     collection: '@registry/entry',
     key: ['type']
+  })
+  dbNs.indexes.register({
+    name: 'entry-by-owner',
+    collection: '@registry/entry',
+    key: ['owner']
   })
 
   HyperDB.toDisk(db)

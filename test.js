@@ -46,7 +46,12 @@ test('put and get record', async t => {
     'put and get of entry with description'
   )
 
-  t.alike(await registry.get('nope'), null, 'null when no entry')
+  try {
+    await registry.get('nope')
+    t.fail('Should throw error for non-existent entry')
+  } catch (err) {
+    t.ok(err.message.includes('does not exist'), 'error when no entry')
+  }
 })
 
 test('get by drive key', async t => {
@@ -91,7 +96,7 @@ test('delete', async t => {
   t.is(await registry.getByDriveKey('a'.repeat(64)), null)
 })
 
-test.skip('get entries of owner', async t => {
+test('get entries of owner', async t => {
   const { registry } = await setup(t)
 
   await registry.put({

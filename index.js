@@ -79,6 +79,14 @@ class Registry extends ReadyResource {
     // Flush the transaction to persist the changes to the database.
     await tx.flush()
   }
+
+  // Retrieves all entries of an owner.
+  getEntriesOfOwner (owner) {
+    return this.db.find(
+      '@registry/entry-by-owner',
+      { gte: { owner }, lte: { owner } }
+    )
+  }
 }
 
 module.exports = Registry
