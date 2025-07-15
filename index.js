@@ -40,6 +40,9 @@ class Registry extends ReadyResource {
     if (!this.opened) await this.ready()
 
     const entry = await this.db.get('@registry/entry', { name })
+    if (!entry) {
+      throw new Error(`Entry with name "${name}" does not exist.`)
+    }
     return entry
   }
 
@@ -60,6 +63,21 @@ class Registry extends ReadyResource {
       '@registry/entry-by-type',
       { gte: { type }, lte: { type } }
     )
+  }
+
+  // Deletes an entry from '@registry/entry' collection by its name.
+  async delete (name) {
+    // Ensure the database is ready before performing any operations.
+    if (!this.opened) await this.ready()
+
+    // Create a transaction to perform the delete operation.
+    const tx = this.db.transaction()
+
+    // Delete the entry
+    await tx.delete('@registry/entry', { name })
+
+    // Flush the transaction to persist the changes to the database.
+    await tx.flush()
   }
 }
 

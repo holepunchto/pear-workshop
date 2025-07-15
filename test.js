@@ -82,7 +82,7 @@ test('get entries of type', async t => {
   )
 })
 
-test.skip('delete', async t => {
+test('delete', async t => {
   const { registry } = await setup(t)
   await addDefaultRecords(registry)
 
