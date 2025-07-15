@@ -1,2 +1,4 @@
 node_modules
 package-lock.json
+hyperdb-workshop-client-corestore/
+hyperdb-workshop-corestore/

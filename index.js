@@ -10,6 +10,11 @@ class Registry extends ReadyResource {
     this.db = HyperDB.bee(core, spec, { autoUpdate: true })
   }
 
+  get publicKey () {
+    console.log(this.db.core.key)
+    return this.db.core.key
+  }
+
   get discoveryKey () {
     return this.db.core.discoveryKey
   }
