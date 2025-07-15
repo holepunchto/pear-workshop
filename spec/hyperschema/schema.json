@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "schema": [
     {
       "name": "entry",
@@ -30,6 +30,12 @@
           "required": false,
           "type": "string",
           "version": 1
+        },
+        {
+          "name": "owner",
+          "required": false,
+          "type": "string",
+          "version": 2
         }
       ]
     }

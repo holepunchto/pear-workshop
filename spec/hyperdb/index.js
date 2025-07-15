@@ -139,13 +139,59 @@ const index2 = {
 }
 collection0.indexes.push(index2)
 
+// '@registry/entry-by-owner' collection key
+const index3_key = new IndexEncoder([
+  IndexEncoder.STRING,
+  IndexEncoder.STRING
+], { prefix: 3 })
+
+function index3_indexify (record) {
+  const arr = []
+
+  const a0 = record.owner
+  if (a0 === undefined) return arr
+  arr.push(a0)
+
+  const a1 = record.name
+  if (a1 === undefined) return arr
+  arr.push(a1)
+
+  return arr
+}
+
+// '@registry/entry-by-owner'
+const index3 = {
+  name: '@registry/entry-by-owner',
+  id: 3,
+  encodeKey (record) {
+    return index3_key.encode(index3_indexify(record))
+  },
+  encodeKeyRange ({ gt, lt, gte, lte } = {}) {
+    return index3_key.encodeRange({
+      gt: gt ? index3_indexify(gt) : null,
+      lt: lt ? index3_indexify(lt) : null,
+      gte: gte ? index3_indexify(gte) : null,
+      lte: lte ? index3_indexify(lte) : null
+    })
+  },
+  encodeValue: (doc) => index3.collection.encodeKey(doc),
+  encodeIndexKeys (record, context) {
+    return [index3_key.encode([record.owner, record.name])]
+  },
+  reconstruct: (keyBuf, valueBuf) => valueBuf,
+  offset: collection0.indexes.length,
+  collection: collection0
+}
+collection0.indexes.push(index3)
+
 const collections = [
   collection0
 ]
 
 const indexes = [
   index1,
-  index2
+  index2,
+  index3
 ]
 
 module.exports = { version, collections, indexes, resolveCollection, resolveIndex }
@@ -161,6 +207,7 @@ function resolveIndex (name) {
   switch (name) {
     case '@registry/entry-by-drive-key': return index1
     case '@registry/entry-by-type': return index2
+    case '@registry/entry-by-owner': return index3
     default: return null
   }
 }
