@@ -5,8 +5,6 @@ Welcome to the [Pear Runtime](https://github.com/holepunchto/pear) Workshop.
 
 https://keet.io
 
-Keet Room:
-> pear://keet/yrb3q5c8g3cx7yzg458ywgcxdoeca1yrotzyfx9r46ncmgsserbfiabg9o3zhxbdt3q3b9hcqrkxszci8uwsufyy1afaoerwcs7egs74ogyw4q58
 
 ![Pear Workshop](./snap.png)
 
