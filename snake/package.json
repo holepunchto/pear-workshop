@@ -1,9 +1,9 @@
 {
   "name": "snake",
-  "main": "index.html",
+  "main": "index.js",
   "pear": {
     "name": "snake",
-    "type": "desktop",
+    "pre": "pear-electron/pre",
     "gui": {
       "backgroundColor": "#1F2430",
       "height": "760",
@@ -23,6 +23,8 @@
   "dependencies": {
     "b4a": "^1.6.7",
     "hypercore-crypto": "^3.4.2",
-    "hyperswarm": "^4.8.4"
+    "hyperswarm": "^4.8.4",
+    "pear-bridge": "^1.2.5",
+    "pear-electron": "^1.7.27"
   }
 }
