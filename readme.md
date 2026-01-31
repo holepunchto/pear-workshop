@@ -10,7 +10,9 @@ https://keet.io
 
 ## Requirements
 
-* `npm` is used to install project dependencies so Node.js with `npm` is required
+* `npm` is used to install project dependencies so **Node.js** with `npm` is required
+  * For MacOS or Linux - set up node quickly with https://nvm.sh
+  * For windows see https://github.com/jasongin/nvs
 
 ## Setup
 
@@ -26,7 +28,6 @@ npx pear
 
 Once installed run `npx pear run pear://runtime`. This will open a new window that shows Complete Pear Setup. Click it. Setup complete. Open a new terminal and run `pear`. Pear help should be output.
 
-### Without Node
 
 Installing any Pear app installs Pear, to install Pear install Desktop Keet from https://keet.io
 

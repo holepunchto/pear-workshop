@@ -8,7 +8,7 @@ Ensure that the current working directory is the `chat` application folder gener
  pear run --dev .
  ```
 
-The `--dev` flag opens the application in Development Mode and opens Devtools automatically.
+The `--dev` (or `-d`) flag opens the application in Development Mode and opens Devtools automatically.
 
 Pear links take the form `pear://<key>` or `pear://<alias>`. We'll use keys later for now try the following alias:
 

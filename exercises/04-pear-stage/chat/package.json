@@ -1,27 +1,31 @@
 {
   "name": "chat",
-  "main": "index.html",
+  "main": "index.js",
   "type": "module",
   "pear": {
+    "pre": "pear-electron/pre",
     "name": "chat",
-    "type": "desktop",
     "gui": {
-      "backgroundColor": "#1F2430",
-      "height": 540,
-      "width": 720
+      "main": "ui/index.html",
+      "width": 900,
+      "height": 500,
+      "minWidth": 500
     }
   },
   "license": "Apache-2.0",
-  "devDependencies": {
-    "brittle": "^3.0.0"
-  },
   "scripts": {
-    "dev": "pear dev",
+    "dev": "pear run -d .",
     "test": "brittle test/*.test.js"
   },
+  "devDependencies": {
+    "brittle": "^3.0.0",
+    "pear-interface": "^1.0.0"
+  },
   "dependencies": {
-    "b4a": "^1.6.6",
-    "hypercore-crypto": "^3.4.2",
-    "hyperswarm": "^4.7.14"
+    "b4a": "^1.7.3",
+    "hypercore-crypto": "^3.6.1",
+    "hyperswarm": "^4.16.0",
+    "pear-bridge": "^1.2.0",
+    "pear-electron": "^1.7.10"
   }
 }

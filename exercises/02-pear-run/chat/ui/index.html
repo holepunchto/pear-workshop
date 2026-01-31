@@ -9,6 +9,8 @@
     body {
       --title-bar-height: 42px;
       padding-top: var(--title-bar-height);
+      color: lime;
+      font-family: sans-serif;
     }
 
     #bar {
@@ -33,11 +35,18 @@
       margin-top: 18px;
       margin-left: 12px;
     }
+
+    #update, #action { display: none }
+    #action { font-size: 1.25rem; background: #405b40; color: #ddd; border: 2px solid #ddd; padding: .2em .3em; cursor: pointer }
   </style>
   <script type='module' src='./app.js'></script>
 </head>
 <body>
   <div id="bar"><pear-ctrl></pear-ctrl></div>
   <h1>chat</h1>
+  <div id="update">
+    <span style="font-size: 1.4rem;">Update Available:</span>
+    <button id="action"></button>
+  </div>
 </body>
 </html>

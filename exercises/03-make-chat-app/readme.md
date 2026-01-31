@@ -8,7 +8,7 @@ npm install hyperswarm hypercore-crypto b4a
 
 ## HTML
 
-Update `chat/index.html` to:
+Update `chat/ui/index.html` to:
 
 ```html
 <!DOCTYPE html>
@@ -174,7 +174,7 @@ Update `chat/index.html` to:
 
 ## JavaScript
 
-Update `app.js` to:
+Update `chat/ui/app.js` to:
 
 ```js
 /* global Pear */
@@ -251,6 +251,25 @@ function onMessageAdded (from, message) {
   $div.textContent = `<${from}> ${message}`
   document.querySelector('#messages').appendChild($div)
 }
+```
+
+The `index.js` should look as follows
+
+```js
+/** @typedef {import('pear-interface')} */
+import Runtime from 'pear-electron'
+import Bridge from 'pear-bridge'
+
+Pear.updates((update) => {
+  console.log('Application update available:', update)
+})
+
+const bridge = new Bridge({ mount: '/ui', waypoint: 'index.html' })
+await bridge.ready()
+
+const runtime = new Runtime()
+const pipe = await runtime.start({ bridge })
+pipe.on('close', () => Pear.exit())
 ```
 
 ## Checking the app
