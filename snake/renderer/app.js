@@ -1,74 +1,76 @@
-/** @typedef {import('pear-interface')} */
-/* global Pear */
-import crypto from 'hypercore-crypto'
-import b4a from 'b4a'
+const bridge = window.bridge
+const decoder = new TextDecoder('utf-8')
+const encoder = new TextEncoder()
 
-// TODO: create swarm and addPlayer on new peer connection
-//       listen for data events of JSON objects { drop, snake, food }
-//       on peer error or if receiving state.drop dropPlayer
-//       otherwise sync food and snake onto relevant peer.
-//       On swarm update event, update the #peers-count element
+const WORKER = '/workers/main.js'
+
+function sendToWorker(msg) {
+  bridge.writeWorkerIPC(WORKER, encoder.encode(JSON.stringify(msg)))
+}
+
+// TODO: bridge.startWorker(WORKER)
+
+// TODO: bridge.onWorkerIPC(WORKER, (data) => {
+//   parse the message and handle each type:
+//
+//   'ready'        → hexToBytes(msg.topic) for topicBuffer
+//                    set #game-topic text, hide #loading, show #game
+//                    call game.start(msg.id, topicBuffer)
+//
+//   'connected'    → if game.players doesn't have msg.id,
+//                    call game.addPlayer(new Player(msg.id, game))
+//
+//   'disconnected' → get player from game.players, call game.dropPlayer(player)
+//
+//   'data'         → JSON.parse(msg.payload) into state
+//                    get player from game.players by state.id
+//                    if state.drop: game.dropPlayer(player)
+//                    if state.snake and longer than player's: update game.food
+//                    update player.snake = state.snake
+//
+//   'update'       → set #peers-count text to msg.connections
+// })
 
 document.querySelector('#create-game').addEventListener('click', createGame)
 document.querySelector('#join-form').addEventListener('submit', joinGame)
 
-function loading () {
+function loading() {
   document.querySelector('#setup').classList.add('hidden')
   document.querySelector('#loading').classList.remove('hidden')
 }
 
-function ready (topicBuffer) {
-  const topic = b4a.toString(topicBuffer, 'hex')
-  document.querySelector('#game-topic').innerText = topic
-  document.querySelector('#loading').classList.add('hidden')
-  document.querySelector('#game').classList.remove('hidden')
-}
-
-async function createGame () {
-  const topicBuffer = crypto.randomBytes(32)
+function createGame() {
   loading()
-  await joinSwarm(topicBuffer)
-  const game = document.querySelector('pear-snake')
-  // TODO: update id to real id from swarm with following
-  // const id = b4a.toString(swarm.keyPair.publicKey, 'hex').slice(0, 6)
-  const id = 'fedcab'
-  game.start(id, topicBuffer)
-  ready(topicBuffer)
+  // TODO: sendToWorker({ type: 'join', topic: null })
 }
 
-async function joinGame (e) {
+function joinGame(e) {
   e.preventDefault()
-  const topicStr = document.querySelector('#join-game-topic').value
-  const topicBuffer = b4a.from(topicStr, 'hex')
+  const topicHex = document.querySelector('#join-game-topic').value
   loading()
-  await joinSwarm(topicBuffer)
-  const game = document.querySelector('pear-snake')
-  // TODO: update id to real id from swarm with following
-  // const id = b4a.toString(swarm.keyPair.publicKey, 'hex').slice(0, 6)
-  const id = 'fedcab'
-  game.start(id, topicBuffer)
-  ready(topicBuffer)
+  // TODO: sendToWorker({ type: 'join', topic: topicHex })
 }
 
-async function joinSwarm (topicBuffer) {
-  // TODO: implement
+function hexToBytes(hex) {
+  const bytes = new Uint8Array(hex.length / 2)
+  for (let i = 0; i < bytes.length; i++) bytes[i] = parseInt(hex.slice(i * 2, i * 2 + 2), 16)
+  return bytes
 }
 
 class Player {
-  constructor (id, game, peer = null) {
+  constructor(id, game) {
     this.id = id
     this.color = '#' + id.slice(0, 6)
     this.game = game
     this.score = 0
     this.snake = []
     this.direction = { x: 0, y: 0 }
-    this.peer = peer
   }
 
-  tick (food) {
+  tick(food) {
     if (this.snake.length === 0) this.snake.unshift(this.game.pos())
-    const head = { 
-      x: (this.snake[0].x + this.direction.x + Game.tiles) % Game.tiles, 
+    const head = {
+      x: (this.snake[0].x + this.direction.x + Game.tiles) % Game.tiles,
       y: (this.snake[0].y + this.direction.y + Game.tiles) % Game.tiles
     }
     this.snake.unshift(head)
@@ -78,15 +80,15 @@ class Player {
     return ate
   }
 
-  collides (player) {
+  collides(player) {
     const head = this.snake[0]
     if (!head) return false
     return player.snake.some((seg) => seg.x === head.x && seg.y === head.y)
   }
 
-  selfCollides () {
+  selfCollides() {
     const [head, ...body] = this.snake
-    return body.some(segment => segment.x === head.x && segment.y === head.y)
+    return body.some((segment) => segment.x === head.x && segment.y === head.y)
   }
 }
 
@@ -95,7 +97,7 @@ class Game extends HTMLElement {
   static tiles = 30
   static pear = '🍐'
 
-  constructor () {
+  constructor() {
     super()
     this.attachShadow({ mode: 'open' })
     this.topicBuffer = null
@@ -112,20 +114,25 @@ class Game extends HTMLElement {
     this.ctx = this.canvas.getContext('2d')
 
     this.keydown = (e) => {
-      if (e.key === 'ArrowUp' && this.player.direction.y === 0) this.player.direction = { x: 0, y: -1 }
-      else if (e.key === 'ArrowDown' && this.player.direction.y === 0) this.player.direction = { x: 0, y: 1 }
-      else if (e.key === 'ArrowLeft' && this.player.direction.x === 0) this.player.direction = { x: -1, y: 0 }
-      else if (e.key === 'ArrowRight' && this.player.direction.x === 0) this.player.direction = { x: 1, y: 0 }
-      setImmediate(() => { this.tick() })
+      if (e.key === 'ArrowUp' && this.player.direction.y === 0) {
+        this.player.direction = { x: 0, y: -1 }
+      } else if (e.key === 'ArrowDown' && this.player.direction.y === 0) {
+        this.player.direction = { x: 0, y: 1 }
+      } else if (e.key === 'ArrowLeft' && this.player.direction.x === 0) {
+        this.player.direction = { x: -1, y: 0 }
+      } else if (e.key === 'ArrowRight' && this.player.direction.x === 0) {
+        this.player.direction = { x: 1, y: 0 }
+      }
+      setTimeout(() => this.tick(), 0)
     }
   }
 
-  connectedCallback () {
+  connectedCallback() {
     this.canvas.width = Game.grid * Game.tiles
     this.canvas.height = Game.grid * Game.tiles
   }
 
-  start (playerId, topicBuffer) {
+  start(playerId, topicBuffer) {
     this.topicBuffer = topicBuffer
     this.food = { x: this.topicBuffer[0] % Game.tiles, y: this.topicBuffer[1] % Game.tiles }
     this.player = new Player(playerId, this)
@@ -135,25 +142,36 @@ class Game extends HTMLElement {
     document.addEventListener('keydown', this.keydown)
   }
 
-  over () {
+  over() {
     document.removeEventListener('keydown', this.keydown)
     this.canvas.style.background = '#151815'
     this.drop = true
     this.dropPlayer(this.player)
   }
 
-  sync () {
-    // TODO: implement
+  sync() {
+    // TODO: sendToWorker({ type: 'send', data: JSON.stringify({ id, food, snake, drop }) })
+    //       where id = this.player.id, food = this.food,
+    //             snake = this.player.snake, drop = this.drop
   }
 
-  pos () {
-    const coords = { x: Math.floor(Math.random() * Game.tiles), y: Math.floor(Math.random() * Game.tiles) }
+  pos() {
+    const coords = {
+      x: Math.floor(Math.random() * Game.tiles),
+      y: Math.floor(Math.random() * Game.tiles)
+    }
     if (coords.x === this.food?.x && coords.y === this.food?.y) return this.pos()
-    if ([...this.players.values()].some((player) => coords.x === player.snake[0]?.x && coords.y === player.snake[0]?.y)) return this.pos()
+    if (
+      [...this.players.values()].some(
+        (player) => coords.x === player.snake[0]?.x && coords.y === player.snake[0]?.y
+      )
+    ) {
+      return this.pos()
+    }
     return coords
   }
 
-  tick () {
+  tick() {
     if (this.topicBuffer === null) return
     if (this.food === null) this.food = this.pos()
     const ate = this.player.tick(this.food)
@@ -161,19 +179,23 @@ class Game extends HTMLElement {
     for (const opponent of this.players.values()) {
       if (opponent === this.player) {
         if (this.player.selfCollides()) this.over()
-      }
-      else if (this.player.collides(opponent)) this.over()
+      } else if (this.player.collides(opponent)) this.over()
       else if (opponent.collides(this.player)) this.dropPlayer(opponent)
     }
   }
 
-  draw () {
+  draw() {
     requestAnimationFrame(() => this.draw())
+    if (this.food === null) return
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     this.ctx.font = `${Game.grid}px sans-serif`
     this.ctx.textAlign = 'center'
     this.ctx.textBaseline = 'middle'
-    this.ctx.fillText(Game.pear, this.food.x * Game.grid + Game.grid / 2, this.food.y * Game.grid + Game.grid / 2)
+    this.ctx.fillText(
+      Game.pear,
+      this.food.x * Game.grid + Game.grid / 2,
+      this.food.y * Game.grid + Game.grid / 2
+    )
     for (const player of this.players.values()) {
       this.ctx.fillStyle = player.color
       for (const seg of player.snake) {
@@ -182,17 +204,17 @@ class Game extends HTMLElement {
     }
   }
 
-  loop () {
+  loop() {
     this.tick()
     this.sync()
     setTimeout(() => this.loop(), this.speed)
   }
 
-  addPlayer (player) {
+  addPlayer(player) {
     this.players.set(player.id, player)
   }
 
-  dropPlayer (player) {
+  dropPlayer(player) {
     if (!this.players.has(player.id)) return
     this.players.delete(player.id)
   }
