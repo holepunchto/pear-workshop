@@ -39,29 +39,30 @@ Output lands in `out/`.
 
 ## Assemble
 
-`pear-build` assembles the build output into a Pear Drive directory. Pass the path to your built app:
+Install `pear-build`
+
+```sh
+npm i -g pear-build
+```
+
+`pear-build` assembles the build output into a Pear Drive directory. 
+
+Pass the path to your built app via a flag per OS, for arm64 mac the flag would be `--darwin-arm64-app`, for x64 linux, `--linux-x64-app`. We're building a multiarch deployment folder with just one arch, in a production scenarion we'd want to build all archs and move.
+Supply the `*-app` flag(s) with `--package` and `--target` flags to create a 
 
 ```sh
 # macOS (arm64)
-pear-build --darwin-arm64-app "./out/<ProductName>-darwin-arm64/<ProductName>.app" ./out/dist
-
-# macOS (universal)
-pear-build \
-  --darwin-arm64-app "./out/<ProductName>-darwin-arm64/<ProductName>.app" \
-  --darwin-x64-app  "./out/<ProductName>-darwin-x64/<ProductName>.app"  \
-  ./out/dist
+pear-build --darwin-arm64-app "./out/Chat-darwin-arm64/Chat.app" --package package.json --target ./out/build
 ```
-
-Replace `<ProductName>` with the `productName` from your `package.json`.
 
 ## Stage
 
 Stage the assembled drive to the network:
 
 ```sh
-pear stage pear://<your-link> ./out/dist
+pear stage pear://<your-link> ./out/build
 ```
 
-This synchronizes the local `out/dist` to the Pear Drive at your link and outputs a diff of what changed.
+This synchronizes the local `out/build` to the Pear Drive at your link and outputs a diff of what changed.
 
 Run `pear help stage` for more information.

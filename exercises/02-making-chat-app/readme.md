@@ -36,7 +36,7 @@ npm install hyperswarm hypercore-crypto b4a
 
 ## Worker
 
-Create `workers/main.js`:
+Update `workers/main.js`:
 
 ```js
 const Hyperswarm = require('hyperswarm')
