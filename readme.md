@@ -2,9 +2,7 @@
 
 Welcome to the [Pear Runtime](https://github.com/holepunchto/pear) Workshop.
 
-
 https://keet.io
-
 
 ![Pear Workshop](./snap.png)
 
@@ -81,12 +79,12 @@ setx PATH "%USERPROFILE%\AppData\Roaming\Pear\bin;%PATH%"
 
 * Setup
 * Pear Preamble - What is Pear?
-* [Exercise 01-pear-init](exercises/01-pear-init/readme.md)
-* [Exercise 02-pear-run](exercises/02-pear-run/readme.md)
-* [Exercise 03-make-chat-app](exercises/03-make-chat-app/readme.md)
-* [Exercise 04-pear-stage](exercises/04-pear-stage/readme.md)
-* [Exercise 05-pear-seed](exercises/05-pear-seed/readme.md)
-* [Exercise 06-connecting-peers](exercises/06-connecting-peers/readme.md)
+* [Exercise 01 - Starting](exercises/01-starting/readme.md)
+* [Exercise 02 - Making Chat App](exercises/02-making-chat-app/readme.md)
+* [Exercise 03 - Building Deployment](exercises/03-building-deployment/readme.md)
+* [Exercise 04 - Seeding Deployment](exercises/04-seeding-deployment/readme.md)
+* [Exercise 05 - Connecting Peers](exercises/05-connecting-peers/readme.md)
+* [Exercise 06 - Updating Deployment](exercises/06-updating-deployment/readme.md)
 * Let's Make Snake
 * Wrapup
 

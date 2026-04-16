@@ -1,30 +1,11 @@
 {
   "name": "snake",
-  "main": "index.js",
-  "pear": {
-    "name": "snake",
-    "pre": "pear-electron/pre",
-    "gui": {
-      "backgroundColor": "#1F2430",
-      "height": "760",
-      "width": "900"
-    }
-  },
-  "type": "module",
-  "license": "Apache-2.0",
-  "scripts": {
-    "dev": "pear run -d .",
-    "test": "brittle test/*.test.js"
-  },
-  "devDependencies": {
-    "brittle": "^3.0.0",
-    "pear-interface": "^1.0.0"
-  },
   "dependencies": {
     "b4a": "^1.6.7",
     "hypercore-crypto": "^3.4.2",
-    "hyperswarm": "^4.8.4",
-    "pear-bridge": "^1.2.5",
-    "pear-electron": "^1.7.27"
+    "hyperswarm": "^4.8.4"
+  },
+  "devDependencies": {
+    "brittle": "^3.0.0"
   }
 }
