@@ -42,14 +42,16 @@ Update `workers/main.js`:
 const Hyperswarm = require('hyperswarm')
 const crypto = require('hypercore-crypto')
 const b4a = require('b4a')
+const FramedStream = require('framed-stream')
 
 const swarm = new Hyperswarm()
+const pipe = new FramedStream(Bare.IPC)
 
 function send(msg) {
-  Bare.IPC.write(Buffer.from(JSON.stringify(msg)))
+  pipe.write(Buffer.from(JSON.stringify(msg)))
 }
 
-Bare.IPC.on('data', (data) => {
+pipe.on('data', (data) => {
   const msg = JSON.parse(data.toString())
   if (msg.type === 'create') joinSwarm(crypto.randomBytes(32))
   else if (msg.type === 'join') joinSwarm(b4a.from(msg.topic, 'hex'))
