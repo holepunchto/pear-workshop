@@ -75,18 +75,19 @@ setx PATH "%USERPROFILE%\AppData\Roaming\Pear\bin;%PATH%"
 
 **THEN START A NEW POWERSHELL FOR THE CHANGE TO TAKE EFFECT**
 
-## Outline
+## PART ONE: Making
 
 * Setup
-* Pear Preamble - What is Pear?
+* The stack: PEARS
 * [Exercise 01 - Starting](exercises/01-starting/readme.md)
 * [Exercise 02 - Making Chat App](exercises/02-making-chat-app/readme.md)
-* [Exercise 03 - Building Deployment](exercises/03-building-deployment/readme.md)
-* [Exercise 04 - Seeding Deployment](exercises/04-seeding-deployment/readme.md)
-* [Exercise 05 - Connecting Peers](exercises/05-connecting-peers/readme.md)
-* [Exercise 06 - Updating Deployment](exercises/06-updating-deployment/readme.md)
-* Let's Make Snake
+* [Exercise 03 - Connecting Peers](exercises/03-connecting-peers/readme.md)
+* Let's [Snake](https://github.com/holepunchto/snake/)
 * Wrapup
+
+## PART TWO: Deploying
+
+> coming soon
 
 # Pear Runtime Documentation
 
