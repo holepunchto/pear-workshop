@@ -79,15 +79,23 @@ setx PATH "%USERPROFILE%\AppData\Roaming\Pear\bin;%PATH%"
 
 * Setup
 * The stack: PEARS
-* [Exercise 01 - Starting](exercises/01-starting/readme.md)
-* [Exercise 02 - Making Chat App](exercises/02-making-chat-app/readme.md)
-* [Exercise 03 - Connecting Peers](exercises/03-connecting-peers/readme.md)
+* [Exercise 01 - Starting](exercises/making/01-starting/readme.md)
+* [Exercise 02 - Making Chat App](exercises/making/02-making-chat-app/readme.md)
+* [Exercise 03 - Connecting Peers](exercises/making/03-connecting-peers/readme.md)
 * Let's [Snake](https://github.com/holepunchto/snake/)
 * Wrapup
 
 ## PART TWO: Deploying
 
-> coming soon
+* Setup
+* The stack: PEARS
+* [Exercise 01 - `pear touch`](exercises/deploying/01-pear-touch/readme.md)
+* [Exercise 02 - `pear build`](exercises/deploying/02-pear-build/readme.md)
+* [Exercise 03 - `pear stage`](exercises/deploying/03-pear-stage/readme.md)
+* [Exercise 04 - `pear seed`](exercises/deploying/04-pear-seed/readme.md)
+* [Exercise 05 - Update Flow](exercises/deploying/05-update-flow/readme.md)
+* [Exercise 06 - `pear provision`](exercises/deploying/06-pear-provision/readme.md)
+* [Exercise 07 - `pear multisig`](exercises/deploying/07-pear-multisig/readme.md)
 
 # Pear Runtime Documentation
 
