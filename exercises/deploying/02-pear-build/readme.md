@@ -2,23 +2,13 @@
 
 Deploying a Pear app means building a native binary, bundling it into a Pear Drive, and staging it to the network.
 
-## Get a Pear Link
+Make sure the `upgrade` field is set to the pear link created with `pear touch`.
 
-A Pear Drive is identified by a key. Create one:
+## Install Dependencies
 
 ```sh
-pear touch
+npm install
 ```
-
-Copy the `pear://` link from the output and add it to `package.json`:
-
-```json
-{
-  "upgrade": "pear://<your-link-here>"
-}
-```
-
-This is the permanent address of your deployment — it doesn't change between versions.
 
 ## Make Distributables
 
